@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>EmotiSense - Sentiment Analyzer</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{url_for('static', filename='assets/img/favicon.png')}}" rel="icon">
+  <link href="{{url_for('static', filename='assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static', filename='assets/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static', filename='assets/css/style.css')}}" rel="stylesheet">
+
+  <style>
+  .card {
+    height: 100%;
+  }
+
+  .card-img-top {
+    height: 100%; /* Adjust the height as needed */
+    object-fit: cover;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+  </style>
+
+</head>
+<body>
+  
+  
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/">EmotiSense</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="#why-us">About</a></li>
+          <li><a class="nav-link scrollto" href="#meet_our_team">Meet our Team</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+    
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+        <h1>About Us</h1>
+        <h2>We believe in the power of technology to transform lives and empower businesses. </h2>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+        <img src="{{url_for('static', filename='assets/img/hero-img.png')}}" class="img-fluid animated" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+
+
+<!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us section-bg">
+  <div class="container-fluid" data-aos="fade-up">
+
+    <div class="row">
+
+      <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+        <div class="content">
+          <p style="font-size: larger;">
+            <h3><strong>Welcome to our website!</strong></h3>
+             We are a dedicated team of three members passionate about technology and innovation. Our journey began during our undergraduate studies in Information Technology, where we discovered our shared interest in Artificial Intelligence (AI) and its applications across various domains.
+            Driven by our curiosity and enthusiasm, we embarked on a mission to explore the vast possibilities of AI and its potential to revolutionize the world of IT. Through our combined efforts and expertise, we have successfully developed an AI system that leverages cutting-edge technologies to tackle real-world challenges.
+            Our team comprises individuals with diverse skills and backgrounds, united by a common goal to create impactful solutions that make a difference. With our collective experience in software development, machine learning, and data science, we strive to push the boundaries of innovation and deliver exceptional results.
+
+          </p>
+        </div>
+
+      </div>
+
+      <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("../static/assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+    </div>
+
+  </div>
+</section><!-- End Why Us Section -->
+
+
+
+
+<!-- ======= Services Section ======= -->
+<section id="meet_our_team" class="services section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Meet Our Team</h2>
+    </div>
+
+      <div class="row">
+        
+        <div class="col-xl-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="card">
+            <img src="{{url_for('static', filename='assets/img/bhavesh.jpg')}}" class="card-img-top" alt="Bhavesh Vishwakarma">
+            <div class="card-body">
+              <h4 class="card-title">Bhavesh Vishwakarma</h4>
+              <ul>
+                <li>
+                  Java Developer
+                </li>
+                <li>
+                  Android Developer
+                </li>
+                <li>
+                  AI enthusiast
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-xl-4 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="card">
+            <img src="{{url_for('static', filename='assets/img/lokesh.jpg')}}" class="card-img-top" alt="Lokesh Kumar Sondhiya">
+            <div class="card-body">
+              <h4 class="card-title">Lokesh Kumar Sondhiya</h4>
+              <ul>
+                <li>
+                  Web Developer
+                </li>
+                <li>
+                  AI enthusiast
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-xl-4 mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="card">
+            <img src="{{url_for('static', filename='assets/img/umar.png')}}" class="card-img-top" alt="Umaraman Singh">
+            <div class="card-body">
+              <h4 class="card-title">Umaraman Singh</h4>
+              <ul>
+                <li>
+                  Web Developer
+                </li>
+                <li>
+                  AI enthusiast
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    
+</section><!-- End Services Section -->
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Contact</h2>
+      <p>Have questions or inquiries? Feel free to reach out to us using the contact form below. We're here to assist you and will get back to you as soon as possible. Alternatively, you can also contact us via email or phone using the provided contact details.</p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-5 d-flex align-items-stretch">
+        <div class="info">
+          <div class="address">
+            <i class="bi bi-geo-alt"></i>
+            <h4>Location:</h4>
+            <p>Raipur,Chhattisgarh,India,492001</p>
+          </div>
+
+          <div class="email">
+            <i class="bi bi-envelope"></i>
+            <h4>Email:</h4>
+            <p>info@example.com</p>
+          </div>
+
+          <div class="phone">
+            <i class="bi bi-phone"></i>
+            <h4>Call:</h4>
+            <p>6264134490</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+        <form action="/" method="post" role="form" class="php-email-form">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="name">Your Name</label>
+              <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="name">Your Email</label>
+              <input type="email" class="form-control" name="email" id="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Subject</label>
+            <input type="text" class="form-control" name="subject" id="subject" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Message</label>
+            <textarea class="form-control" name="message" rows="10" required></textarea>
+          </div>
+          <div class="my-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your message has been sent. Thank you!</div>
+          </div>
+          <div class="text-center"><button type="submit">Send Message</button></div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Contact Section -->
+
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>EmotiSense</h3>
+          <p>
+            Raipur<br>
+            Chhattisgarh, 492001<br>
+            India<br><br>
+            <strong>Phone:</strong> 6264134490<br>
+            <strong>Email:</strong> info@example.com<br>
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="./index.html">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Text Sentiment Analysis</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Voice Sentiment Analysis</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Real-time analysis</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Social Networks</h4>
+          <div class="social-links mt-3">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</footer><!-- End Footer -->
+
+
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static', filename='assets/vendor/aos/aos.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/waypoints/noframework.waypoints.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/php-email-form/validate.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static', filename='assets/js/main.js')}}"></script>
+</body>
+</html>

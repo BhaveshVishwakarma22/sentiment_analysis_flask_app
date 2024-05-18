@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Voice</title>
+        <link rel="canonical" href="https://markjivko.com/tutorials/B3wWIsNHPk4/" />
+        <meta charset="UTF-8" />
+        <meta name="Author" content="Mark Jivko" />
+        <meta name="Keywords" content="js,audio recorder" />
+        <meta name="Description" content="Recording audio with HTML 5 and JavaScript" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://markjivko.com/dist/recorder.js"></script>
+        <script>
+            jQuery(document).ready(function () {
+                var $ = jQuery;
+                var myRecorder = {
+                    objects: {
+                        context: null,
+                        stream: null,
+                        recorder: null
+                    },
+                    init: function () {
+                        if (null === myRecorder.objects.context) {
+                            myRecorder.objects.context = new (window.AudioContext || window.webkitAudioContext)();
+                        }
+                    },
+                    start: function () {
+                        var options = { audio: true, video: false };
+                        navigator.mediaDevices
+                            .getUserMedia(options)
+                            .then(function (stream) {
+                                myRecorder.objects.stream = stream;
+                                myRecorder.objects.recorder = new Recorder(
+                                    myRecorder.objects.context.createMediaStreamSource(stream),
+                                    { numChannels: 1 }
+                                );
+                                myRecorder.objects.recorder.record();
+                            })
+                            .catch(function (err) {});
+                    },
+                    stop: function (listObject) {
+                        if (null !== myRecorder.objects.stream) {
+                            myRecorder.objects.stream.getAudioTracks()[0].stop();
+                        }
+                        if (null !== myRecorder.objects.recorder) {
+                            myRecorder.objects.recorder.stop();
+
+                            // Validate object
+                            if (null !== listObject && "object" === typeof listObject && listObject.length > 0) {
+
+                                // Export the WAV file
+                                myRecorder.objects.recorder.exportWAV(function (blob) {
+                                    
+                                    // Bhavesh
+                                    var formData = new FormData();
+
+                                    // Append the audio blob to the FormData object
+                                    formData.append('audio', blob, 'audio.wav');
+                                    var xhr = new XMLHttpRequest();
+                                    var url = '/voice';
+                                    xhr.open('POST', url, true);
+                                    xhr.onload = function () {
+                                        if (xhr.status === 200) {
+                                            // Request was successful
+                                            console.log('Audio submitted successfully');
+                                        } else {
+                                            // Request failed
+                                            console.error('Failed to submit audio');
+                                        }
+                                    };
+
+                                    xhr.send(formData);
+
+
+
+                                    var url = (window.URL || window.webkitURL).createObjectURL(blob);
+                                    
+
+                                    // Prepare the playback
+                                    var audioObject = $("<audio controls></audio>").attr("src", url);
+
+                                    // Prepare the download link
+                                    var downloadObject = $("<a>&#9660;</a>")
+                                        .attr("href", url)
+                                        .attr("download", new Date().toUTCString() + ".wav");
+
+
+                                    // Wrap everything in a row
+                                    var holderObject = $('<div  class="row"></form></div>').append(audioObject).append(downloadObject);
+
+                                    // Append to the list
+                                    listObject.append(holderObject);
+                                });
+                            }
+                        }
+                    }
+                };
+
+                // Prepare the recordings list
+                var listObject = $('[data-role="recordings"]');
+
+                // Prepare the record button
+                $('[data-role="controls"] > button').click(function () {
+                    // Initialize the recorder
+                    myRecorder.init();
+
+                    // Get the button state
+                    var buttonState = !!$(this).attr("data-recording");
+
+                    // Toggle
+                    if (!buttonState) {
+                        $(this).attr("data-recording", "true");
+                        myRecorder.start();
+                    } else {
+                        $(this).attr("data-recording", "");
+                        myRecorder.stop(listObject);
+                    }
+                });
+            });
+        </script>
+
+        <style>
+
+            body{
+                background-image: url("../static/assets/img/bg.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
+            }
+            
+            .holder {
+                margin: auto;
+                width: 50%;
+                background-color: aliceblue;
+                border-radius: 10px;
+                padding: 10px;
+                margin: 2.5% 0;
+            }
+
+            h6{
+                color: black;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                text-transform: uppercase;
+            }
+
+            h1{
+                color: black;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-transform: uppercase;
+                margin: 3%;
+                padding: 20px;
+                border-radius: 10px;
+                display: inline-block;
+                background-color: white;
+                padding-right: 50px;
+                padding-left: 50px;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        
+    <center>
+
+        <h1>VOICE BASED SENTIMENT ANALYSIS</h1>
+
+        <div class="holder">
+            <div data-role="controls">
+                <button class="btn btn-primary mb-4"> ⭕ Record</button>
+            </div>
+            <form action="/file_voice" method="post" data-role="recordings" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label h6">Pick an audio file for sentiment analysis</label>
+                    <input id="formFile" style="padding: 10px; padding-right: 400px;" class="form-control " type="file" value="file" name="file"/>
+                </div>
+                  
+                
+                <br>
+                <input class="btn btn btn-primary mb-8" type="submit" value="Transcribe"/>
+                <div class="mb-8"></div>
+            </form>
+        </div>
+
+    </center>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
