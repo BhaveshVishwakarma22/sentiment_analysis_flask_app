@@ -30,7 +30,6 @@ numpy==1.21.1
 opt-einsum==3.3.0
 packaging==24.0
 pandas==1.1.5
-pickle5==0.0.12
 Pillow==9.5.0
 protobuf==4.24.4
 PyMySQL==1.1.0
